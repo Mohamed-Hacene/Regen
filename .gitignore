@@ -1,0 +1,6 @@
+citizen/system_resources/
+runserveur.bat
+server.cfg
+cache/
+crashes/
+.env
