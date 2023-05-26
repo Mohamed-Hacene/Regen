@@ -51,13 +51,6 @@
 			$('#hud').append(html);
 		}
 
-		// $('#appAllCity').html('');
-
-		// for(let i=0; i<ESX.HUDElements.length; i++){
-		// 	let html = Mustache.render(ESX.HUDElements[i].html, ESX.HUDElements[i].data);
-		// 	$('#appAllCity').append(html);
-		// }
-
 	}
 
 	ESX.inventoryNotification = function(add, item, count){

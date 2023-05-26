@@ -1,10 +1,10 @@
 ESX.Scaleform.ShowFreemodeMessage = function(title, msg, sec)
 	local scaleform = ESX.Scaleform.Utils.RequestScaleformMovie('MP_BIG_MESSAGE_FREEMODE')
 
-	BeginScaleformMovieMethod(scaleform, 'SHOW_SHARD_WASTED_MP_MESSAGE')
-	PushScaleformMovieMethodParameterString(title)
-	PushScaleformMovieMethodParameterString(msg)
-	EndScaleformMovieMethod()
+	PushScaleformMovieFunction(scaleform, 'SHOW_SHARD_WASTED_MP_MESSAGE')
+	PushScaleformMovieFunctionParameterString(title)
+	PushScaleformMovieFunctionParameterString(msg)
+	PopScaleformMovieFunctionVoid()
 
 	while sec > 0 do
 		Citizen.Wait(1)
@@ -19,23 +19,21 @@ end
 ESX.Scaleform.ShowBreakingNews = function(title, msg, bottom, sec)
 	local scaleform = ESX.Scaleform.Utils.RequestScaleformMovie('BREAKING_NEWS')
 
-	BeginScaleformMovieMethod(scaleform, 'SET_TEXT')
-	PushScaleformMovieMethodParameterString(msg)
-	PushScaleformMovieMethodParameterString(bottom)
-	EndScaleformMovieMethod()
+	PushScaleformMovieFunction(scaleform, 'SET_TEXT')
+	PushScaleformMovieFunctionParameterString(msg)
+	PushScaleformMovieFunctionParameterString(bottom)
+	PopScaleformMovieFunctionVoid()
 
-	BeginScaleformMovieMethod(scaleform, 'SET_SCROLL_TEXT')
-	PushScaleformMovieMethodParameterInt(0) -- top ticker
-	PushScaleformMovieMethodParameterInt(0) -- Since this is the first string, start at 0
-	PushScaleformMovieMethodParameterString(title)
+	PushScaleformMovieFunction(scaleform, 'SET_SCROLL_TEXT')
+	PushScaleformMovieFunctionParameterInt(0) -- top ticker
+	PushScaleformMovieFunctionParameterInt(0) -- Since this is the first string, start at 0
+	PushScaleformMovieFunctionParameterString(title)
+	PopScaleformMovieFunctionVoid()
 
-	EndScaleformMovieMethod()
-
-	BeginScaleformMovieMethod(scaleform, 'DISPLAY_SCROLL_TEXT')
-	PushScaleformMovieMethodParameterInt(0) -- Top ticker
-	PushScaleformMovieMethodParameterInt(0) -- Index of string
-
-	EndScaleformMovieMethod()
+	PushScaleformMovieFunction(scaleform, 'DISPLAY_SCROLL_TEXT')
+	PushScaleformMovieFunctionParameterInt(0) -- Top ticker
+	PushScaleformMovieFunctionParameterInt(0) -- Index of string
+	PopScaleformMovieFunctionVoid()
 
 	while sec > 0 do
 		Citizen.Wait(1)
@@ -50,15 +48,13 @@ end
 ESX.Scaleform.ShowPopupWarning = function(title, msg, bottom, sec)
 	local scaleform = ESX.Scaleform.Utils.RequestScaleformMovie('POPUP_WARNING')
 
-	BeginScaleformMovieMethod(scaleform, 'SHOW_POPUP_WARNING')
-
-	PushScaleformMovieMethodParameterFloat(500.0) -- black background
-	PushScaleformMovieMethodParameterString(title)
-	PushScaleformMovieMethodParameterString(msg)
-	PushScaleformMovieMethodParameterString(bottom)
-	PushScaleformMovieMethodParameterBool(true)
-
-	EndScaleformMovieMethod()
+	PushScaleformMovieFunction(scaleform, 'SHOW_POPUP_WARNING')
+	PushScaleformMovieFunctionParameterFloat(500.0) -- black background
+	PushScaleformMovieFunctionParameterString(title)
+	PushScaleformMovieFunctionParameterString(msg)
+	PushScaleformMovieFunctionParameterString(bottom)
+	PushScaleformMovieFunctionParameterBool(true)
+	PopScaleformMovieFunctionVoid()
 
 	while sec > 0 do
 		Citizen.Wait(1)
@@ -73,9 +69,8 @@ end
 ESX.Scaleform.ShowTrafficMovie = function(sec)
 	local scaleform = ESX.Scaleform.Utils.RequestScaleformMovie('TRAFFIC_CAM')
 
-	BeginScaleformMovieMethod(scaleform, 'PLAY_CAM_MOVIE')
-
-	EndScaleformMovieMethod()
+	PushScaleformMovieFunction(scaleform, 'PLAY_CAM_MOVIE')
+	PopScaleformMovieFunctionVoid()
 
 	while sec > 0 do
 		Citizen.Wait(1)

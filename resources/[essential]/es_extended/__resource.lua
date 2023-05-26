@@ -2,7 +2,7 @@ resource_manifest_version '44febabe-d386-4d18-afbe-5e627f4af937'
 
 description 'ES Extended'
 
-version '1.1.0'
+version '1.0.14'
 
 server_scripts {
 	'@async/async.lua',
@@ -28,9 +28,7 @@ server_scripts {
 	'server/main.lua',
 	'server/commands.lua',
 
-	'common/modules/math.lua',
-	'common/modules/table.lua',
-	'common/functions.lua'
+	'shared/functions.lua'
 }
 
 client_scripts {
@@ -53,13 +51,10 @@ client_scripts {
 	'client/wrapper.lua',
 	'client/main.lua',
 
-	'client/modules/death.lua',
 	'client/modules/scaleform.lua',
 	'client/modules/streaming.lua',
 
-	'common/modules/math.lua',
-	'common/modules/table.lua',
-	'common/functions.lua'
+	'shared/functions.lua'
 }
 
 ui_page {
@@ -67,7 +62,6 @@ ui_page {
 }
 
 files {
-	'locale.js',
 	'html/ui.html',
 
 	'html/css/app.css',
@@ -78,6 +72,9 @@ files {
 
 	'html/fonts/pdown.ttf',
 	'html/fonts/bankgothic.ttf',
+
+	'html/img/keys/enter.png',
+	'html/img/keys/return.png',
 
 	'html/img/accounts/bank.png',
 	'html/img/accounts/black_money.png'
@@ -92,10 +89,8 @@ server_exports {
 }
 
 dependencies {
-	'mysql-async',
 	'essentialmode',
-	'esplugin_mysql',
-	'async'
+	'mysql-async',
+	'async',
+	'baseevents'
 }
-
-client_script '@esx_astromenu/79726.lua'
