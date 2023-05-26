@@ -1,9 +1,9 @@
-USE `essentialmode`;
+USE `regen`;
 
 ALTER TABLE `users`
 	ADD COLUMN `name` VARCHAR(255) NULL DEFAULT '' AFTER `money`,
 	ADD COLUMN `skin` LONGTEXT NULL AFTER `name`,
-	ADD COLUMN `job` varchar(255) NULL DEFAULT 'unemployed' AFTER `skin`,
+	ADD COLUMN `job` varchar(255) NULL DEFAULT 'chomâge' AFTER `skin`,
 	ADD COLUMN `job_grade` INT NULL DEFAULT 0 AFTER `job`,
 	ADD COLUMN `loadout` LONGTEXT NULL AFTER `job_grade`,
 	ADD COLUMN `position` VARCHAR(255) NULL AFTER `loadout`
@@ -32,7 +32,7 @@ CREATE TABLE `job_grades` (
 	PRIMARY KEY (`id`)
 );
 
-INSERT INTO `job_grades` VALUES (1,'unemployed',0,'unemployed','Unemployed',200,'{}','{}');
+INSERT INTO `job_grades` VALUES (1,'chomâge',0,'rsa','rsa',200,'{}','{}');
 
 CREATE TABLE `jobs` (
 	`name` varchar(50) NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE `jobs` (
 	PRIMARY KEY (`name`)
 );
 
-INSERT INTO `jobs` VALUES ('unemployed','Unemployed');
+INSERT INTO `jobs` VALUES ('chomâge','chomâge');
 
 CREATE TABLE `user_accounts` (
 
