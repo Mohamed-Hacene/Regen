@@ -35,7 +35,6 @@ Locales['br'] = {
   ['company_nomoney'] = 'a empresa em que voce esta empregado esta muito pobre para pagar seu salario.',
   ['received_paycheck'] = 'recebeu dinheiro',
   ['bank'] = 'banco',
-  ['black_money'] = 'dinheiro sujo',
   ['act_imp'] = 'acao impossivel',
   ['in_vehicle'] = 'voce nao pode dar nada para alguem no veiculo',
   ['cannot_pickup_room'] = 'voce nao tem espaço suficiente no seu inventario para pegar ~y~%s~s~!',

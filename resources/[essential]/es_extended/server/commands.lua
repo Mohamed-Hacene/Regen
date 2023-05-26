@@ -99,8 +99,6 @@ TriggerEvent('es:addGroupCommand', 'setmoney', 'admin', function(source, args, u
 			xPlayer.setMoney(money_amount)
 		elseif money_type == 'bank' then
 			xPlayer.setAccountMoney('bank', money_amount)
-		elseif money_type == 'black' then
-			xPlayer.setAccountMoney('black_money', money_amount)
 		else
 			TriggerClientEvent('chatMessage', _source, "SYSTEM", {255, 0, 0}, "^2" .. money_type .. " ^0 is not a valid money type!")
 			return

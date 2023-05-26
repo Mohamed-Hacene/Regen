@@ -35,7 +35,6 @@ Locales['sv'] = {
   ['company_nomoney'] = 'företaget du är anställt hos har inte råd att betala ut din lön.',
   ['received_paycheck'] = 'mottagit lön',
   ['bank'] = 'bank',
-  ['black_money'] = 'svarta pengar',
 
   ['act_imp'] = 'åtgärd omöjlig',
   ['in_vehicle'] = 'du kan inte ge saker till en som sitter i ett fordon!',

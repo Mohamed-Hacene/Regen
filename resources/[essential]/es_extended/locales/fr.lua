@@ -35,7 +35,6 @@ Locales['fr'] = {
   ['company_nomoney'] = 'votre entreprise n\'a plus d\'argent pour vous payer!',
   ['received_paycheck'] = 'paiement reçu',
   ['bank'] = 'banque',
-  ['black_money'] = 'argent Sale',
 
   ['act_imp'] = 'action impossible',
   ['in_vehicle'] = 'Vous ne pouvez rien donner à quelqu\'un dans un véhicule',

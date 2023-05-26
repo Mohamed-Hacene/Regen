@@ -35,7 +35,6 @@ Locales['cs'] = {
   ['company_nomoney'] = 'společnost u které jste zaměstananí nemá peníze na váš plat.',
   ['received_paycheck'] = 'obdržena výplata',
   ['bank'] = 'bankovní účet',
-  ['black_money'] = 'špinavé peníze',
 
   ['act_imp'] = 'akce není možná',
   ['in_vehicle'] = 'nemůže nic dát osobě ve vozidle',

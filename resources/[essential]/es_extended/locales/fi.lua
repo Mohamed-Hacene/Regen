@@ -35,7 +35,6 @@ Locales['fi'] = {
   ['company_nomoney'] = 'yritys jolle teet töitä on köyhä eikä voi maksaa palkkaasi.',
   ['received_paycheck'] = 'sait palkan',
   ['bank'] = 'pankki',
-  ['black_money'] = 'likainen Raha',
 
   ['act_imp'] = 'toiminto mahdoton',
   ['in_vehicle'] = 'et voi antaa ajoneuvossa olevalle mitään.',

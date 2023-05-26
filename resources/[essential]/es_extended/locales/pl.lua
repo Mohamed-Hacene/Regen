@@ -34,7 +34,6 @@ Locales['pl'] = {
   ['company_nomoney'] = 'firma, w której pracujesz, jest zbyt biedna, by wypłacić twoją pensję.',
   ['received_paycheck'] = 'otrzymana wypłata',
   ['bank'] = 'bank',
-  ['black_money'] = 'brudne pieniądze',
   
   ['act_imp'] = 'działanie niemożliwe',
   ['in_vehicle'] = 'nie możesz przekazywać przedmiotów w pojeździe',

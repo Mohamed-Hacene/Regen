@@ -35,7 +35,6 @@ Locales['en'] = {
   ['company_nomoney'] = 'the company you\'re employeed at is too poor to pay out your salary.',
   ['received_paycheck'] = 'received paycheck',
   ['bank'] = 'bank',
-  ['black_money'] = 'dirty Money',
   
   ['act_imp'] = 'action impossible',
   ['in_vehicle'] = 'you can\'t give anything to someone in a vehicle',
