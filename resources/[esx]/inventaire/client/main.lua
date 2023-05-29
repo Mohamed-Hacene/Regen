@@ -232,7 +232,6 @@ end)
 RegisterNetEvent("esx:playerLoaded")
 AddEventHandler("esx:playerLoaded", function(xPlayer)
     PlayerData = xPlayer
-	DisplayRadar(false)
 	TriggerServerEvent("getgps")
 end)
 
@@ -353,6 +352,7 @@ function closeInventory()
     SetKeepInputMode(false)
     DeletePedScreen()
     disablecontrol = false
+    DisplayRadar(true)
     TriggerScreenblurFadeOut(0)
     TriggerServerEvent("getgps")
     TriggerEvent('esx_status:setDisplay', 10.0)
