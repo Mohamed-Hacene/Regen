@@ -429,20 +429,20 @@ end)
 
 
 -- Pause menu disable HUD display
-Citizen.CreateThread(function()
-  while true do
-    Citizen.Wait(1)
-    if IsPauseMenuActive() and not IsPaused then
-      IsPaused = true
-      TriggerEvent('es:setMoneyDisplay', 0.0)
-      ESX.UI.HUD.SetDisplay(0.0)
-    elseif not IsPauseMenuActive() and IsPaused then
-      IsPaused = false
-      TriggerEvent('es:setMoneyDisplay', 1.0)
-      ESX.UI.HUD.SetDisplay(1.0)
-    end
-  end
-end)
+-- Citizen.CreateThread(function()
+--   while true do
+--     Citizen.Wait(1)
+--     if IsPauseMenuActive() and not IsPaused then
+--       IsPaused = true
+--       TriggerEvent('es:setMoneyDisplay', 0.0)
+--       ESX.UI.HUD.SetDisplay(0.0)
+--     elseif not IsPauseMenuActive() and IsPaused then
+--       IsPaused = false
+--       TriggerEvent('es:setMoneyDisplay', 1.0)
+--       ESX.UI.HUD.SetDisplay(1.0)
+--     end
+--   end
+-- end)
 
 -- Save loadout
 Citizen.CreateThread(function()
@@ -500,17 +500,17 @@ Citizen.CreateThread(function()
 end)
 
 -- Menu interactions
-Citizen.CreateThread(function()
-  while true do
+-- Citizen.CreateThread(function()
+--   while true do
 
-    Citizen.Wait(10)
+--     Citizen.Wait(10)
 
-    if IsControlJustReleased(0, Keys['F2']) and GetLastInputMethod(2) and not isDead and not ESX.UI.Menu.IsOpen('default', 'es_extended', 'inventory') then
-      ESX.ShowInventory()
-    end
+--     if IsControlJustReleased(0, Keys['F2']) and GetLastInputMethod(2) and not isDead and not ESX.UI.Menu.IsOpen('default', 'es_extended', 'inventory') then
+--       ESX.ShowInventory()
+--     end
 
-  end
-end)
+--   end
+-- end)
 
 -- Dot above head
 if Config.ShowDotAbovePlayer then
@@ -627,4 +627,13 @@ Citizen.CreateThread(function()
     end
   end
 
+end)
+
+---------------------------------------------------------------------------------------------------------
+--NB : gestion des menu
+---------------------------------------------------------------------------------------------------------
+
+RegisterNetEvent('NB:openMenuInventaire')
+AddEventHandler('NB:openMenuInventaire', function()
+	ESX.ShowInventory()
 end)
