@@ -202,11 +202,11 @@ Citizen.CreateThread(function()
                 for k,v in pairs(result) do
                 local plyPos = GetEntityCoords(PlayerPedId())
                 local pos = vector3(json.decode(v.coordsenter).x, json.decode(v.coordsenter).y, json.decode(v.coordsenter).z)
+                local exit = vector3(json.decode(v.coordsexit).x, json.decode(v.coordsexit).y, json.decode(v.coordsexit).z)
                 local dist = #(plyPos-pos)
-                local ground = pos - vector3(0, 0, 0.98)
                 if dist <= 3.0 then
                     Timer = 0
-                    DrawMarker(25, ground, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.5, 0.5, 0.5, 46, 193, 134, 178, false, false, false, false)
+                    DrawMarker(25, pos - vector3(0, 0, 0.98), 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.5, 0.5, 0.5, 46, 193, 134, 178, false, false, false, false)
                 end
                 if dist <= 1.0 then
                     Timer = 0
@@ -214,12 +214,12 @@ Citizen.CreateThread(function()
                     if IsControlJustPressed(1,51) then
                         if v.vehEnter == true then
                             if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
-                                teleportPedAndVeh(json.decode(v.coordsexit), GetVehiclePedIsIn(PlayerPedId(), false))
+                                teleportPedAndVeh(exit - vector3(0, 0, 0.98), GetVehiclePedIsIn(PlayerPedId(), false))
                             else
-                                teleportPed(json.decode(v.coordsexit))
+                                teleportPed(exit - vector3(0, 0, 0.98))
                             end
                         else
-                            teleportPed(json.decode(v.coordsexit))
+                            teleportPed(exit - vector3(0, 0, 0.98))
                         end
                     end
                 end
@@ -237,11 +237,11 @@ Citizen.CreateThread(function()
                 for k2,v2 in pairs(result2) do
                 local plyPos = GetEntityCoords(PlayerPedId())
                 local pos2 = vector3(json.decode(v2.coordsexit).x, json.decode(v2.coordsexit).y, json.decode(v2.coordsexit).z)
+                local enter = vector3(json.decode(v2.coordsenter).x, json.decode(v2.coordsenter).y, json.decode(v2.coordsenter).z)
                 local dist = #(plyPos-pos2)
-                local ground = pos2 - vector3(0, 0, 0.98)
                 if dist <= 3.0 then
                     Timer = 0
-                    DrawMarker(25, ground, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.5, 0.5, 0.5, 46, 193, 134, 178, false, false, false, false)
+                    DrawMarker(25, pos2 - vector3(0, 0, 0.98), 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.5, 0.5, 0.5, 46, 193, 134, 178, false, false, false, false)
                 end
                 if dist <= 1.0 then
                     Timer = 0
@@ -249,12 +249,12 @@ Citizen.CreateThread(function()
                     if IsControlJustPressed(1,51) then
                         if v2.vehEnter == true then
                             if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
-                                teleportPedAndVeh(json.decode(v2.coordsenter), GetVehiclePedIsIn(PlayerPedId(), false))
+                                teleportPedAndVeh(enter - vector3(0, 0, 0.98), GetVehiclePedIsIn(PlayerPedId(), false))
                             else
-                                teleportPed(json.decode(v2.coordsenter))
+                                teleportPed(enter - vector3(0, 0, 0.98))
                             end
                         else
-                            teleportPed(json.decode(v2.coordsenter))
+                            teleportPed(enter - vector3(0, 0, 0.98))
                         end
                     end
                 end
