@@ -1,6 +1,6 @@
 CREATE TABLE `tpbuilder` (
   `id` int(11) NOT NULL,
-  'name' varchar(255) NOT NULL,
+  'name' varchar(50) NOT NULL,
   `coordsenter` varchar(255) NOT NULL,
   `coordsexit` varchar(255) NOT NULL,
   `textenter` varchar(50) NOT NULL,

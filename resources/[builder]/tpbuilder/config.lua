@@ -1,3 +1,3 @@
 Config = {
-    subTitle = "~b~rDev",
+    subTitle = "~b~TP builder",
 }

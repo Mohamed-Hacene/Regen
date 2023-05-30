@@ -5,6 +5,7 @@ local vehEnter = false
 local options = {"Oui", "Non"}
 local ItemSelected = 1
 infoMarker.vehEnter = vehEnter
+local rightLabels = {"--", "--", "--", "--", "--"}
 
 Citizen.CreateThread(function()
     TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
@@ -32,8 +33,8 @@ local function rMarkerBuilderKeyboard(TextEntry, ExampleText, MaxStringLenght)
 end
 
 local function menuMarkerBuilder()
-    local menuP = RageUI.CreateMenu("Créer un marker", Config.subTitle)
-    local menuS = RageUI.CreateSubMenu(menuP, "Gestion des markers", Config.subTitle)
+    local menuP = RageUI.CreateMenu("OG teleport", Config.subTitle)
+    local menuS = RageUI.CreateSubMenu(menuP, "Gestion des tp", Config.subTitle)
     RageUI.Visible(menuP, not RageUI.Visible(menuP))
 
     while menuP do
@@ -41,40 +42,57 @@ local function menuMarkerBuilder()
 
         RageUI.IsVisible(menuP, true, true, true, function()
 
-            RageUI.Separator("~b~Créer un marker")
+            RageUI.Separator("~b~Créer un tp")
 
-            RageUI.ButtonWithStyle("Coordonnées entrée ?", nil, {RightLabel = ""}, true, function(_, _, s)
+            RageUI.ButtonWithStyle("Nom du tp:", "Appuyez sur ~y~[E]~s~ ", {RightLabel = rightLabels[1]}, true, function(_, _, s)
                 if s then
-                    infoMarker.coordsenter = GetEntityCoords(GetPlayerPed(-1))
-                    ESX.ShowNotification("Vous avez choisi les coordonnées du point d'entrée.")
-                end
-            end)
-
-            RageUI.ButtonWithStyle("Texte entrée ?", "Appuyez sur ~y~[E]~s~ ", {RightLabel = ""}, true, function(_, _, s)
-                if s then
-                    local result = rMarkerBuilderKeyboard("Entrez le texte du marker", "", 50)
+                    local result = rMarkerBuilderKeyboard("Entrez le nom du tp", "", 50)
                     if result ~= nil then
-                        infoMarker.textenter = result
-                        ESX.ShowNotification("Vous avez choisi le texte du point d'entrée.")
+                        infoMarker.name = result
+                        ESX.ShowNotification("Vous avez choisi le nom du tp.")
+                        rightLabels[1] = result
                     else
                         ESX.ShowNotification("Vous avez mis un texte invalide !")
                     end
                 end
             end)
 
-            RageUI.ButtonWithStyle("Coordonnées sortie ?", nil, {RightLabel = ""}, true, function(_, _, s)
+            RageUI.ButtonWithStyle("Coordonnées du premier tp:", nil, {RightLabel = rightLabels[2]}, true, function(_, _, s)
                 if s then
-                    infoMarker.coordsexit = GetEntityCoords(GetPlayerPed(-1))
-                    ESX.ShowNotification("Vous avez choisi les coordonnées du point de sortie.")
+                    infoMarker.coordsenter = GetEntityCoords(GetPlayerPed(-1))
+                    ESX.ShowNotification("Vous avez choisi les coordonnées du point d'entrée.")
+                    rightLabels[2] = "~g~OK"
                 end
             end)
 
-            RageUI.ButtonWithStyle("Texte sortie ?", "Appuyez sur ~y~[E]~s~ ", {RightLabel = ""}, true, function(_, _, s)
+            RageUI.ButtonWithStyle("Texte du premier tp:", "Appuyez sur ~y~[E]~s~ ", {RightLabel = rightLabels[3]}, true, function(_, _, s)
                 if s then
-                    local result = rMarkerBuilderKeyboard("Entrez le texte du marker", "", 50)
+                    local result = rMarkerBuilderKeyboard("Entrez le texte du tp", "", 50)
+                    if result ~= nil then
+                        infoMarker.textenter = result
+                        ESX.ShowNotification("Vous avez choisi le texte du point d'entrée.")
+                        rightLabels[3] = result
+                    else
+                        ESX.ShowNotification("Vous avez mis un texte invalide !")
+                    end
+                end
+            end)
+
+            RageUI.ButtonWithStyle("Coordonnées du second tp:", nil, {RightLabel = rightLabels[4]}, true, function(_, _, s)
+                if s then
+                    infoMarker.coordsexit = GetEntityCoords(GetPlayerPed(-1))
+                    ESX.ShowNotification("Vous avez choisi les coordonnées du point de sortie.")
+                    rightLabels[4] = "~g~OK"
+                end
+            end)
+
+            RageUI.ButtonWithStyle("Texte du second tp:", "Appuyez sur ~y~[E]~s~ ", {RightLabel = rightLabels[5]}, true, function(_, _, s)
+                if s then
+                    local result = rMarkerBuilderKeyboard("Entrez le texte du tp", "", 50)
                     if result ~= nil then
                         infoMarker.textexit = result
                         ESX.ShowNotification("Vous avez choisi le texte du point de sortie.")
+                        rightLabels[5] = result
                     else
                         ESX.ShowNotification("Vous avez mis un texte invalide !")
                     end
@@ -95,7 +113,7 @@ local function menuMarkerBuilder()
                 end
             end)
             
-            RageUI.ButtonWithStyle("~g~Créer le marker", nil, {RightLabel = "→→→"}, true, function(_, _, s)
+            RageUI.ButtonWithStyle("~g~Créer la tp", nil, {RightLabel = "→→→"}, true, function(_, _, s)
                 if s then
                     if infoMarker.coordsenter == nil then
                         ESX.ShowNotification("Vous avez laissé le nom vide.")
@@ -112,7 +130,13 @@ local function menuMarkerBuilder()
                 end
             end)
 
-            RageUI.ButtonWithStyle("~r~Annuler", nil, {RightLabel = "→→→"}, true, function(_, _, s)
+            RageUI.ButtonWithStyle("~o~Effacer", nil, {RightLabel = "→→→"}, true, function(_, _, s)
+                if s then
+                    refreshTable()
+                end
+            end)
+
+            RageUI.ButtonWithStyle("~r~Quitter", nil, {RightLabel = "→→→"}, true, function(_, _, s)
                 if s then
                     RageUI.CloseAll()
                     refreshTable()
@@ -122,7 +146,7 @@ local function menuMarkerBuilder()
 
             RageUI.Line()
 
-            RageUI.ButtonWithStyle("~o~Gestion des markers", nil, {}, true, function(_, _, s)
+            RageUI.ButtonWithStyle("~b~Gestion des tp", nil, {}, true, function(_, _, s)
                 if s then
                     getAllMarkers()
                 end
@@ -132,13 +156,13 @@ local function menuMarkerBuilder()
 
         RageUI.IsVisible(menuS, true, true, true, function()
 
-            RageUI.Separator("~b~Gestion des markers")
+            RageUI.Separator("~b~Gestion des tp")
 
             for k,v in pairs(allMarkersInServer) do
-                RageUI.ButtonWithStyle("Marker : "..v.id, "Texte entrée : "..v.textenter.."\nTexte sortie : "..v.textexit, {}, true, function(_, _, s)
+                RageUI.ButtonWithStyle("tp : "..v.name, "Texte tp 1 : "..v.textenter.."\nTexte tp 2 : "..v.textexit, {}, true, function(_, _, s)
                     if s then
                         TriggerServerEvent("rMarkerBuilder:deleteMarker", v.id)
-                        RageUI.CloseAll()
+                        getAllMarkers()
                     end
                 end)
             end
@@ -256,4 +280,5 @@ end
 function refreshTable()
     infoMarker = {}
     vehEnter = false
+    rightLabels = {"--", "--", "--", "--", "--"}
 end

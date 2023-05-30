@@ -16,6 +16,7 @@ ESX.RegisterServerCallback('rMarkerBuilder:getAllMarkers', function(source, cb)
         for _,v in pairs(data) do
 			table.insert(allMarkers, {
                 id = v.id,
+                name = v.name,
 				coordsenter = v.coordsenter,
 				coordsexit = v.coordsexit,
 				textenter = v.textenter,
@@ -31,7 +32,8 @@ end)
 RegisterServerEvent('rMarkerBuilder:createMarker')
 AddEventHandler('rMarkerBuilder:createMarker', function(infoMarker)
     local _src = source
-    MySQL.Async.execute("INSERT INTO tpbuilder (coordsenter, coordsexit, textenter, textexit, vehenter) VALUES (@coordsenter, @coordsexit, @textenter, @textexit, @vehenter)", {
+    MySQL.Async.execute("INSERT INTO tpbuilder (name, coordsenter, coordsexit, textenter, textexit, vehenter) VALUES (@name, @coordsenter, @coordsexit, @textenter, @textexit, @vehenter)", {
+        ['@name'] = infoMarker.name,
         ['@coordsenter'] = json.encode(infoMarker.coordsenter),
         ['@coordsexit'] = json.encode(infoMarker.coordsexit),
         ['@textenter'] = infoMarker.textenter,
