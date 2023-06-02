@@ -159,8 +159,7 @@ AddEventHandler('es:playerLoaded', function(source, _player)
           },
           function(result)
 
-            userData.job['name']  = result[1].job
-            userData.job['grade'] = result[1].job_grade
+            userData.job['id']  = result[1].job
 
             if result[1].loadout ~= nil then
               userData.loadout = json.decode(result[1].loadout)
@@ -179,15 +178,14 @@ AddEventHandler('es:playerLoaded', function(source, _player)
 
       -- Get job label
       table.insert(tasks2, function(cb2)
-
         MySQL.Async.fetchAll(
-          'SELECT * FROM `jobs` WHERE `name` = @name',
+          'SELECT * FROM `jobs` WHERE `id` = @id',
           {
-            ['@name'] = userData.job.name
+            ['@id'] = userData.job.id
           },
           function(result)
-
-            userData.job['label'] = result[1].label
+            print(userData.job.id)
+            userData.job['name'] = result[1].name
 
             cb2()
 
@@ -200,27 +198,14 @@ AddEventHandler('es:playerLoaded', function(source, _player)
       table.insert(tasks2, function(cb2)
 
         MySQL.Async.fetchAll(
-          'SELECT * FROM `job_grades` WHERE `job_name` = @job_name AND `grade` = @grade',
+          'SELECT * FROM `jobs` WHERE `id` = @id',
           {
-            ['@job_name'] = userData.job.name,
-            ['@grade']    = userData.job.grade
+            ['@id'] = userData.job.id,
           },
           function(result)
 
-            userData.job['grade_name']   = result[1].name
-            userData.job['grade_label']  = result[1].label
-            userData.job['grade_salary'] = result[1].salary
-
-            userData.job['skin_male']   = {}
-            userData.job['skin_female'] = {}
-
-            if result[1].skin_male ~= nil then
-              userData.job['skin_male'] = json.decode(result[1].skin_male)
-            end
-
-            if result[1].skin_female ~= nil then
-              userData.job['skin_female'] = json.decode(result[1].skin_female)
-            end
+            userData.job['name']   = result[1].name
+            userData.job['salary'] = result[1].salary
 
             cb2()
 

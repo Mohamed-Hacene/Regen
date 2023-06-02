@@ -4,3 +4,4 @@ server.cfg
 cache/
 crashes/
 .env
+db/default/

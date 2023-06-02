@@ -41,7 +41,7 @@ Config.concessionnaire = {
 }
 -- Ouvrir le menu perso
 Config.menuperso = {
-	clavier = Keys["F5"],
+	clavier = Keys["F1"],
 	manette1 = Keys["SPACE"],
 	manette2 = Keys["TOP"],
 }

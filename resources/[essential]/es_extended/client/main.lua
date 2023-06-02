@@ -37,20 +37,18 @@ AddEventHandler('esx:playerLoaded', function(xPlayer)
 
   end
 
-  local jobTpl = '<div>{{job_label}} - {{grade_label}}</div>'
+  local jobTpl = '<div>{{job_name}}</div>'
 
-  if xPlayer.job.grade_label == '' then
-    jobTpl = '<div>{{job_label}}</div>'
+  if xPlayer.job.label == '' then
+    jobTpl = '<div>{{job_name}}</div>'
   end
 
   ESX.UI.HUD.RegisterElement('job', #xPlayer.accounts, 0, jobTpl, {
-    job_label   = '',
-    grade_label = ''
+    job_name   = '',
   })
 
   ESX.UI.HUD.UpdateElement('job', {
-    job_label   = xPlayer.job.label,
-    grade_label = xPlayer.job.grade_label
+    job_name   = xPlayer.job.name,
   })
 
 end)
@@ -251,8 +249,7 @@ end)
 RegisterNetEvent('esx:setJob')
 AddEventHandler('esx:setJob', function(job)
   ESX.UI.HUD.UpdateElement('job', {
-    job_label   = job.label,
-    grade_label = job.grade_label
+    job_name   = job.name,
   })
 end)
 

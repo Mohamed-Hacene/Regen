@@ -29,7 +29,7 @@ TriggerEvent('es:addGroupCommand', 'setjob', 'jobmaster', function(source, args,
 	end
 end, function(source, args, user)
   TriggerClientEvent('chat:addMessage', source, { args = { '^1SYSTEM', 'Insufficient Permissions.' } })
-end, {help = _U('setjob'), params = {{name = "id", help = _U('id_param')}, {name = "job", help = _U('setjob_param2')}, {name = "grade_id", help = _U('setjob_param3')}}})
+end, {help = _U('setjob'), params = {{name = "id", help = _U('id_param')}, {name = "name", help = _U('setjob_param2')}}})
 
 TriggerEvent('es:addGroupCommand', 'loadipl', 'admin', function(source, args, user)
   TriggerClientEvent('esx:loadIPL', -1, args[1])
