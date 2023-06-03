@@ -161,7 +161,6 @@ if enableBankingGui then
             if  IsNotFarBank() then
                 TempsBoucle = BoucleCourt
                 if((IsNearBank() or IsNearATM()) and (IsPedInAnyVehicle(GetPlayerPed(-1), true) == false)) then
-                  print(IsNearATM())
                   if(IsNearATM()) then
                     drawTxt("Appuyez sur ~g~E~s~ pour acceder à l'ATM",0,1,0.5,0.8,0.6,255,255,255,255)
                   else
