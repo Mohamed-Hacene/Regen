@@ -23,19 +23,15 @@ AddEventHandler('esx:playerLoaded', function(xPlayer)
   ESX.PlayerLoaded  = true
   ESX.PlayerData    = xPlayer
 
-  for i=1, #xPlayer.accounts, 1 do
+  -- local accountTpl = '<div><img src="img/accounts/' .. xPlayer.accounts[1].name .. '.png"/>&nbsp;{{money}}</div>'
 
-    local accountTpl = '<div><img src="img/accounts/' .. xPlayer.accounts[i].name .. '.png"/>&nbsp;{{money}}</div>'
+  -- ESX.UI.HUD.RegisterElement('account_' .. xPlayer.accounts[1].name, 0, 0, accountTpl, {
+  --   money = 0
+  -- })
 
-    ESX.UI.HUD.RegisterElement('account_' .. xPlayer.accounts[i].name, i-1, 0, accountTpl, {
-      money = 0
-    })
-
-    ESX.UI.HUD.UpdateElement('account_' .. xPlayer.accounts[i].name, {
-      money = xPlayer.accounts[i].money
-    })
-
-  end
+  -- ESX.UI.HUD.UpdateElement('account_' .. xPlayer.accounts[1].name, {
+  --   money = xPlayer.accounts[1].money
+  -- })
 
   local jobTpl = '<div>{{job_name}}</div>'
 

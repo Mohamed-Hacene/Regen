@@ -5,8 +5,8 @@ ESX.StartPayCheck = function()
 
 		for i=1, #xPlayers, 1 do
 			local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
-			local job     = xPlayer.job.grade_name
-			local salary  = xPlayer.job.grade_salary
+			local job     = xPlayer.job
+			local salary  = xPlayer.job.salary
 
 			if salary > 0 then
 				if job == 'chomâge' then -- chomâge
