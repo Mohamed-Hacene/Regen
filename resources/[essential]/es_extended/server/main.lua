@@ -184,7 +184,6 @@ AddEventHandler('es:playerLoaded', function(source, _player)
             ['@id'] = userData.job.id
           },
           function(result)
-            print(userData.job.id)
             userData.job['name'] = result[1].name
 
             cb2()
