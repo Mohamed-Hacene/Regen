@@ -6,7 +6,7 @@ function updatejob(source, id, isConnected)
     local job = id
     local source = source
     local player = getPlayerID(source)
-    MySQL.Sync.execute("UPDATE users SET `job`=@value WHERE identifier = @identifier", {['@value'] = job, ['@identifier'] = player})
+    MySQL.Sync.execute("UPDATE users SET `job`= @value WHERE identifier = @identifier", {['@value'] = job, ['@identifier'] = player})
     if(isConnected) then
         TriggerClientEvent("recolt:updateJobs", source, job)
         TriggerEvent('es:getPlayerFromId', source, function(user)

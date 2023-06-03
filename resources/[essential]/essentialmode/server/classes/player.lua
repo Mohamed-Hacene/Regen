@@ -3,12 +3,13 @@
 --     Version 3, 19 November 2007     --
 
 -- OOP hack
-function CreatePlayer(source, permission_level, money, bank, identifier, license, group, roles)
+function CreatePlayer(source, permission_level, job, money, bank, identifier, license, group, roles)
 	local self = {}
 
 	-- Initialize all initial variables for a user
 	self.source = source
 	self.permission_level = permission_level
+	self.job = job
 	self.money = money
 	self.bank = bank
 	self.identifier = identifier
@@ -336,6 +337,14 @@ function CreatePlayer(source, permission_level, money, bank, identifier, license
 				end
 			end
 		end)
+	end
+
+	rTable.getJob= function()
+		return self.job
+	end
+
+	rTable.setJob= function(param)
+		self.job = param
 	end
 
 	return rTable
