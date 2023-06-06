@@ -5,7 +5,6 @@ if Config.UseESX then
 
 	RegisterServerEvent('fuel:pay')
 	AddEventHandler('fuel:pay', function(price)
-		print("hello")
 		local xPlayer = ESX.GetPlayerFromId(source)
 		local amount = math.ceil(price)
 
