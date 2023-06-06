@@ -168,6 +168,7 @@ if enableBankingGui then
                   end
                   atBank = true
                   if IsControlJustPressed(1, 38)  then -- IF INPUT_PICKUP Is pressed
+                    ExecuteCommand("checkbalance")
                       if bankOpen then
                           closeGui()
                           bankOpen = false
