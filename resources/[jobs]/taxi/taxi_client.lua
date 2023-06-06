@@ -49,21 +49,22 @@ end
 function BoucleJob()
     Citizen.CreateThread(function()
         VMenu.AddMenu( 'Taxi', 'Taxi',255,165,1)  
-        local x = 895.90020751953
-        local y = -178.72854614258
-        local z = 74.700271606445
+        local x = 893.65747070313
+        local y = -162.29484558105
+        local z = 76.891159057617
         while TestBonJob() do
             Citizen.Wait(1)
             local playerPos = GetEntityCoords(GetPlayerPed(-1), true)
-            x = 895.900
-            y = -178.728
-            z = 74.7002
+            x = 893.65747070313
+            y = -162.29484558105
+            z = 76.891159057617
             if (Vdist(playerPos.x, playerPos.y, playerPos.z, x, y, z) < 100.0) then
-                DrawMarker(25, x, y, z-1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.5, 0.5, 0.5, 46, 193, 134, 178, false, false, false, false)
                 if (Vdist(playerPos.x, playerPos.y, playerPos.z, x, y, z) < 2.0) then
                     if isInServiceTaxi then
+                        DrawMarker(25, x, y, z - 0.98, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.5, 0.5, 0.5, 193, 46, 46, 178, false, false, false, false)
                         DisplayHelpText('Appuyez sur ~INPUT_CONTEXT~ pour ~r~stopper~s~ votre service') 
                     else
+                        DrawMarker(25, x, y, z - 0.98, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.5, 0.5, 0.5, 46, 193, 46, 178, false, false, false, false)
                         DisplayHelpText('Appuyez sur ~INPUT_CONTEXT~ pour ~g~prendre~s~ votre service')
                     end
                     if (IsControlJustReleased(1, 51)) then 
@@ -72,11 +73,11 @@ function BoucleJob()
                 end
             end
             if isInServiceTaxi then
-                x = 913.99212646484
-                y = -167.31979370117
-                z = 74.33235168457
+                x = 897.34881591797
+                y = -152.49554443359
+                z = 76.55834197998
                 if (Vdist(playerPos.x, playerPos.y, playerPos.z, x, y, z) < 100.0) then
-                    DrawMarker(1, x, y, z - 1, 0, 0, 0, 0, 0, 0, 3.0001, 3.0001, 1.5001, 255, 165, 0,165, 0, 0, 0,0)
+                    DrawMarker(36, x, y, z, 0, 0, 0, 50, 50, 50, 2.0001, 2.0001, 2.0001, 255, 165, 0,165, 0, 0, 0,0)
                     if (Vdist(playerPos.x, playerPos.y, playerPos.z, x, y, z) < 4.0) then
                         local ply = GetPlayerPed(-1)
                         if IsPedInAnyVehicle(ply, true) then
@@ -142,10 +143,8 @@ function Taxi()
 	while not HasModelLoaded(vehicle) do
 		Wait(1)
 	end
-
 	--local plate = math.random(300, 900)
-	local coords = GetOffsetFromEntityInWorldCoords(GetPlayerPed(-1), 0, 5.0, 0)
-	local spawned_car = CreateVehicle(vehicle, coords, 913.99212646484, -167.31979370117, 74.33235168457, true, false)
+	local spawned_car = CreateVehicle(vehicle, 897.34881591797, -152.49554443359, 76.55834197998, 326.194213, true, false)
 	SetVehicleOnGroundProperly(spawned_car)
 	--SetVehicleColours(spawned_car, 12, 131)
 	--SetVehicleExtraColours(spawned_car, 12, 12)

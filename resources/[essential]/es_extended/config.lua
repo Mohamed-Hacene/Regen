@@ -9,6 +9,6 @@ Config.ShowDotAbovePlayer       = false
 Config.DisableWantedLevel       = true
 Config.EnableWeaponPickup       = true
 Config.RemoveInventoryItemDelay = 5 * 60000
-Config.PaycheckInterval         = 7 * 60000
+Config.PaycheckInterval         = 10 * 60000
 Config.MaxPlayers               = 32
 Config.EnableDebug              = false

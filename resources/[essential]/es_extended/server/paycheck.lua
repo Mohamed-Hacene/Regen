@@ -1,5 +1,9 @@
 ESX.StartPayCheck = function()
 
+	function bankBalance(player)
+		return MySQL.Sync.fetchScalar("SELECT bank FROM users WHERE identifier = @name", {['@name'] = player})
+	  end
+
 	function payCheck()
 		local xPlayers = ESX.GetPlayers()
 
@@ -9,7 +13,7 @@ ESX.StartPayCheck = function()
 			local salary  = xPlayer.job.salary
 
 			if salary > 0 then
-				if job == 'chomâge' then -- chomâge
+				if job == 'chomeur' then -- chomâge
 					xPlayer.addAccountMoney('bank', salary)
 					TriggerClientEvent('esx:showAdvancedNotification', xPlayer.source, _U('bank'), _U('received_paycheck'), _U('received_help', salary), 'CHAR_BANK_MAZE', 9)
 				elseif Config.EnableSocietyPayouts then -- possibly a society
@@ -32,6 +36,8 @@ ESX.StartPayCheck = function()
 					end)
 				else -- generic job
 					xPlayer.addAccountMoney('bank', salary)
+					bank = bankBalance(xPlayer.identifier)
+					TriggerClientEvent("banking:updateBalance", xPlayer.source, bank+salary)
 					TriggerClientEvent('esx:showAdvancedNotification', xPlayer.source, _U('bank'), _U('received_paycheck'), _U('received_salary', salary), 'CHAR_BANK_MAZE', 9)
 				end
 			end
