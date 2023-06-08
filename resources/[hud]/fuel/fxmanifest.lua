@@ -14,7 +14,8 @@ client_scripts {
 
 server_scripts {
 	'config.lua',
-	'source/fuel_server.lua'
+	'source/fuel_server.lua',
+	"@mysql-async/lib/MySQL.lua"
 }
 
 exports {

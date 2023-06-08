@@ -9,7 +9,15 @@ if Config.UseESX then
 		local amount = math.ceil(price)
 
 		if price > 0 then
-			xPlayer.removeBank(amount)
+			xPlayer.removeBank(amount-1)
 		end
+	end)
+
+	RegisterServerEvent("fuel:checkBalance")
+	AddEventHandler("fuel:checkBalance", function()
+		local source = source
+		player = GetPlayerIdentifier(source)
+		bank = MySQL.Sync.fetchScalar("SELECT bank FROM users WHERE identifier = @name", {['@name'] = player})
+		TriggerClientEvent('fuel:setBankBalance', source, bank)
 	end)
 end

@@ -84,13 +84,11 @@ Citizen.CreateThread(function()
 			isNearPump = pumpObject
 
 			if Config.UseESX then
-				local playerData = ESX.GetPlayerData()
-				for i=1, #playerData.accounts, 1 do
-					if playerData.accounts[i].name == 'money' then
-						currentCash = playerData.accounts[i].money
-						break
-					end
-				end
+				TriggerServerEvent("fuel:checkBalance")
+				RegisterNetEvent('fuel:setBankBalance')
+				AddEventHandler('fuel:setBankBalance', function(bank)
+					currentCash = bank
+				end)
 			end
 		else
 			isNearPump = false
