@@ -43,6 +43,13 @@ AddEventHandler('es_db:createUser', function(identifier, license, cash, bank, ca
 	}, function(rowsChanged)
 		callback()
 	end)
+	MySQL.Async.execute('INSERT INTO user_inventory (`identifier`, `inventory`) VALUES (@identifier, @inventory);',
+	{
+		identifier = user.identifier,
+		inventory = "{}"
+	}, function(rowsChanged)
+		callback()
+	end)
 end)
 
 AddEventHandler('es_db:retrieveLicensedUser', function(license, callback)
