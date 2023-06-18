@@ -1857,30 +1857,32 @@ function loadPlayerInventory(result)
 
             if inventory ~= nil then
                 for key, value in pairs(inventory) do
-                    if inventory[key].count <= 0 then
-                        inventory[key] = nil
-                    else
-                        if json.encode(Inv.FastWeapons) ~= "[]" then
-                            for k,v in pairs(Inv.FastWeapons) do 
-                                for fast, bind in pairs(Inv.FastWeapons) do
-                                    if inventory[key].name == bind then
-                                        table.insert(fastItems, {
-                                            label = inventory[key].label,
-                                            count = inventory[key].count,
-                                            limit = -1,
-                                            type = inventory[key].type,
-                                            name = inventory[key].name,
-                                            usable = true,
-                                            rare = false,
-                                            slot = fast
-                                        })
-                                    end
-                                end
-                            end
-                        end
-                        inventory[key].type = "item_standard"
-                        table.insert(items, inventory[key])
-                    end
+                    -- if inventory[key].count <= 0 then
+                    --     inventory[key] = nil
+                    -- else
+                    --     if json.encode(Inv.FastWeapons) ~= "[]" then
+                    --         for k,v in pairs(Inv.FastWeapons) do 
+                    --             for fast, bind in pairs(Inv.FastWeapons) do
+                    --                 if inventory[key].name == bind then
+                    --                     table.insert(fastItems, {
+                    --                         label = inventory[key].label,
+                    --                         count = inventory[key].count,
+                    --                         limit = -1,
+                    --                         type = inventory[key].type,
+                    --                         name = inventory[key].name,
+                    --                         usable = true,
+                    --                         rare = false,
+                    --                         slot = fast
+                    --                     })
+                    --                 end
+                    --             end
+                    --         end
+                    --     end
+                    --     inventory[key].type = "item_standard"
+                    --     table.insert(items, key)
+                    -- end
+                    item = {label = key, count = value, type = "item_standard", name = key}
+                    table.insert(items, item)
                 end
             end
 

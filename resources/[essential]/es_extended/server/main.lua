@@ -59,90 +59,92 @@ AddEventHandler('es:playerLoaded', function(source, _player)
 
     end)
 
+    TriggerEvent('onMySQLReady')
+
     -- Get Inventory
-    table.insert(tasks, function(cb)
+    -- table.insert(tasks, function(cb)
 
-      MySQL.Async.fetchAll(
-        'SELECT * FROM `user_inventory` WHERE `identifier` = @identifier',
-        {
-          ['@identifier'] = player.getIdentifier()
-        },
-        function(inventory)
+    --   MySQL.Async.fetchAll(
+    --     'SELECT * FROM `user_inventory` WHERE `identifier` = @identifier',
+    --     {
+    --       ['@identifier'] = player.getIdentifier()
+    --     },
+    --     function(inventory)
 
-          local tasks2 = {}
+    --       local tasks2 = {}
 
-          for i=1, #inventory, 1 do
-            table.insert(userData.inventory, {
-              name      = inventory[i].item,
-              count     = inventory[i].count,
-              label     = ESX.Items[inventory[i].item].label,
-              limit     = ESX.Items[inventory[i].item].limit,
-              usable    = ESX.UsableItemsCallbacks[inventory[i].item] ~= nil,
-              rare      = ESX.Items[inventory[i].item].rare,
-              canRemove = ESX.Items[inventory[i].item].canRemove,
-            })
-          end
+    --       for i=1, #inventory, 1 do
+    --         table.insert(userData.inventory, {
+    --           name      = inventory[i].item,
+    --           count     = inventory[i].count,
+    --           label     = ESX.Items[inventory[i].item].label,
+    --           limit     = ESX.Items[inventory[i].item].limit,
+    --           usable    = ESX.UsableItemsCallbacks[inventory[i].item] ~= nil,
+    --           rare      = ESX.Items[inventory[i].item].rare,
+    --           canRemove = ESX.Items[inventory[i].item].canRemove,
+    --         })
+    --       end
 
-          for k,v in pairs(ESX.Items) do
+    --       for k,v in pairs(ESX.Items) do
 
-            local found = false
+    --         local found = false
 
-            for j=1, #userData.inventory, 1 do
-              if userData.inventory[j].name == k then
-                found = true
-                break
-              end
-            end
+    --         for j=1, #userData.inventory, 1 do
+    --           if userData.inventory[j].name == k then
+    --             found = true
+    --             break
+    --           end
+    --         end
 
-            if not found then
+    --         if not found then
 
-              table.insert(userData.inventory, {
-                name      = k,
-                count     = 0,
-                label     = ESX.Items[k].label,
-                limit     = ESX.Items[k].limit,
-                usable    = ESX.UsableItemsCallbacks[k] ~= nil,
-                rare      = ESX.Items[k].rare,
-                canRemove = ESX.Items[k].canRemove,
-              })
+    --           table.insert(userData.inventory, {
+    --             name      = k,
+    --             count     = 0,
+    --             label     = ESX.Items[k].label,
+    --             limit     = ESX.Items[k].limit,
+    --             usable    = ESX.UsableItemsCallbacks[k] ~= nil,
+    --             rare      = ESX.Items[k].rare,
+    --             canRemove = ESX.Items[k].canRemove,
+    --           })
 
-              local scope = function(item, identifier)
+    --           local scope = function(item, identifier)
 
-                table.insert(tasks2, function(cb2)
+    --             table.insert(tasks2, function(cb2)
 
-                  MySQL.Async.execute(
-                    'INSERT INTO user_inventory (identifier, item, count) VALUES (@identifier, @item, @count)',
-                    {
-                      ['@identifier'] = identifier,
-                      ['@item']       = item,
-                      ['@count']      = 0
-                    },
-                    function(rowsChanged)
-                      cb2()
-                    end
-                  )
+    --               MySQL.Async.execute(
+    --                 'INSERT INTO user_inventory (identifier, item, count) VALUES (@identifier, @item, @count)',
+    --                 {
+    --                   ['@identifier'] = identifier,
+    --                   ['@item']       = item,
+    --                   ['@count']      = 0
+    --                 },
+    --                 function(rowsChanged)
+    --                   cb2()
+    --                 end
+    --               )
 
-                end)
+    --             end)
 
-              end
+    --           end
 
-              scope(k, player.getIdentifier())
+    --           scope(k, player.getIdentifier())
 
-            end
+    --         end
 
-          end
+    --       end
 
-          Async.parallelLimit(tasks2, 5, function(results) end)
+    --       Async.parallelLimit(tasks2, 5, function(results) end)
 
-          table.sort(userData.inventory, function(a,b)
-            return a.label < b.label
-          end)
+    --       table.sort(userData.inventory, function(a,b)
+    --         return a.label < b.label
+    --       end)
 
-          cb()
-        end
-      )
+    --       cb()
+    --     end
+    --   )
 
-    end)
+    -- end)
 
     -- Get job and loadout
     table.insert(tasks, function(cb)

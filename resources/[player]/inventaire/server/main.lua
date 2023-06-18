@@ -18,13 +18,12 @@ end
 
 ESX.RegisterServerCallback("esx_inventoryhud:getPlayerInventory", function(source, cb, target)
 	local targetXPlayer = ESX.GetPlayerFromId(target)
-	MySQL.Async.fetchAll("SELECT weight FROM users WHERE identifier = '" .. targetXPlayer.identifier .. "'", {}, function(result)
+	MySQL.Async.fetchAll("SELECT * FROM user_inventory WHERE identifier = '" .. targetXPlayer.identifier .. "'", {}, function(result)
 		if targetXPlayer ~= nil then
-			if targetXPlayer ~= nil then
-				cb({inventory = targetXPlayer.inventory, money = targetXPlayer.getMoney(), accounts = targetXPlayer.accounts, weapons = targetXPlayer.loadout, weight = result[1].weight, maxWeight = "50000"})
-			else
-				cb(nil)
-			end
+			inventory = json.decode(result[1].inventory)
+			cb({inventory = inventory, money = targetXPlayer.getMoney(), accounts = targetXPlayer.accounts, weapons = targetXPlayer.loadout, weight = result[1].weight, maxWeight = "50000"})
+		else
+			cb(nil)
 		end
 	end)
 end)
