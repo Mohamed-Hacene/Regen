@@ -2332,7 +2332,7 @@ end
 CreateThread(function()
     while true do
         local time = 500
-        if totalWeight >= 40000 then
+        if totalWeight >= 50000 then
             time = 1
             DisableControlAction(0, 21, true)
             DisableControlAction(0, 22, true)

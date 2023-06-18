@@ -21,7 +21,7 @@ ESX.RegisterServerCallback("esx_inventoryhud:getPlayerInventory", function(sourc
 	MySQL.Async.fetchAll("SELECT * FROM user_inventory WHERE identifier = '" .. targetXPlayer.identifier .. "'", {}, function(result)
 		if targetXPlayer ~= nil then
 			inventory = json.decode(result[1].inventory)
-			cb({inventory = inventory, money = targetXPlayer.getMoney(), accounts = targetXPlayer.accounts, weapons = targetXPlayer.loadout, weight = result[1].weight, maxWeight = "50000"})
+			cb({inventory = inventory, money = targetXPlayer.getMoney(), accounts = targetXPlayer.accounts, weapons = targetXPlayer.loadout, weight = result[1].weight, maxWeight = result[1].max_weight})
 		else
 			cb(nil)
 		end
@@ -31,9 +31,10 @@ end)
 ESX.RegisterServerCallback("esx_inventoryhud:othersPlayerInventory", function(source, cb, target)
 	local targetXPlayer = ESX.GetPlayerFromId(target)
 	if targetXPlayer ~= nil then
-		MySQL.Async.fetchAll("SELECT * FROM vetement WHERE identifier = '" .. targetXPlayer.identifier .. "'", {}, function(result3)
+		MySQL.Async.fetchAll("SELECT * FROM user_inventory WHERE identifier = '" .. targetXPlayer.identifier .. "'", {}, function(result)
 			if targetXPlayer ~= nil then
-				cb({inventory = targetXPlayer.inventory, money = targetXPlayer.getMoney(), accounts = targetXPlayer.accounts, weapons = targetXPlayer.loadout, weight = targetXPlayer.getWeight(), maxWeight = "5000"})
+				inventory = json.decode(result[1].inventory)
+				cb({inventory = inventory, money = targetXPlayer.getMoney(), accounts = targetXPlayer.accounts, weapons = targetXPlayer.loadout, weight = result[1].weight, maxWeight = result[1].max_weight})
 			else
 				cb(nil)
 			end
