@@ -1881,7 +1881,7 @@ function loadPlayerInventory(result)
                     --     inventory[key].type = "item_standard"
                     --     table.insert(items, key)
                     -- end
-                    item = {label = key, count = value, type = "item_standard", name = key}
+                    item = {label = value[2], count = value[3], type = "item_standard", name = value[1]}
                     table.insert(items, item)
                 end
             end
